@@ -1,171 +1,130 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { FaFacebookF, FaLinkedinIn, FaInstagram, FaEnvelope, FaGithub, FaMedium } from 'react-icons/fa';
 import './Connect.css';
-import { Link } from "react-router-dom";
 
 const Connect = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [status, setStatus] = useState({ state: 'idle', msg: '' }); // idle | loading | success | error
 
-  const getData = async (name, email, message) => {
-    const options = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ name, email, message })
-    };
-    const res = await fetch('https://tarun-c-reddy-default-rtdb.firebaseio.com/UserData.json', options);
-    if (res.ok) {
-      alert("Message Sent Successfully");
-      setFormData({ name: "", email: "", message: "" });
-    } else {
-      alert("Error Occurred");
+  const submitMessage = async (name, email, message) => {
+    setStatus({ state: 'loading', msg: 'Sending...' });
+    try {
+      const res = await fetch('https://tarun-c-reddy-default-rtdb.firebaseio.com/UserData.json', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, message, ts: Date.now() })
+      });
+      if (!res.ok) throw new Error('Network response not ok');
+      setFormData({ name: '', email: '', message: '' });
+      setStatus({ state: 'success', msg: 'Message sent. Thank you!' });
+    } catch (err) {
+      setStatus({ state: 'error', msg: 'Failed to send. Please retry.' });
+    } finally {
+      setTimeout(() => setStatus({ state: 'idle', msg: '' }), 3500);
     }
   };
 
-  const handleInputChange = (e) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) {
-      alert('All fields are required!');
+    const { name, email, message } = formData;
+    if (!name || !email || !message) {
+      setStatus({ state: 'error', msg: 'All fields are required.' });
       return;
     }
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailPattern.test(formData.email)) {
-      alert('Please enter a valid email address!');
+    if (!emailPattern.test(email)) {
+      setStatus({ state: 'error', msg: 'Enter a valid email address.' });
       return;
     }
-    getData(formData.name, formData.email, formData.message);
+    submitMessage(name, email, message);
   };
 
   return (
-    <div className="snip1217">
-      <nav>
+    <div className="connect-page">
+      <nav className="top-nav">
+        <div className="logo">Tarun C Reddy</div>
         <ul>
-          <li>
-            <Link to="/Home">Home</Link>
-          </li>
-          <li>
-            <Link to="/Aboutme">About Me</Link>
-          </li>
-          <li>
-            <Link to="/Accomplishments">Accomplishments</Link>
-          </li>
-          <li>
-            <Link to="/Projects">Projects</Link>
-          </li>
-          <li>
-            <Link to="/Certifications">Certifications</Link>
-          </li>
-          <li>
-            <Link to="/connect">Connect</Link>
-          </li>
-          <li>
-            <Link to="/blogs">Blogs</Link>
-          </li>
+          <li><Link to="/Home">Home</Link></li>
+          <li><Link to="/Aboutme">About</Link></li>
+          <li><Link to="/Projects">Projects</Link></li>
+          <li><Link to="/Accomplishments">Accomplishments</Link></li>
+          <li><Link to="/Certifications">Certifications</Link></li>
+          <li><Link to="/connect" className="active">Connect</Link></li>
+          <li><Link to="/blogs">Blogs</Link></li>
         </ul>
       </nav>
-      <hr width="30%" color="#7490dc" />
-      <h2 className="projhead">Connect with me!</h2>
-      <hr width="30%" color="#7490dc" />
-      <div className="connect-container">
-        <div className="connect-form">
-          <form method='POST' onSubmit={handleSubmit}>
-            <input
-              name="name"
-              type="text"
-              className="feedback-input"
-              placeholder="Name"
-              value={formData.name}
-              onChange={handleInputChange}
-              required
-            />
-            <input
-              name="email"
-              type="email"
-              className="feedback-input"
-              placeholder="Email"
-              value={formData.email}
-              onChange={handleInputChange}
-              required
-            />
-            <textarea
-              name="message"
-              className="feedback-input"
-              placeholder="Message"
-              value={formData.message}
-              onChange={handleInputChange}
-              required
-            ></textarea>
-            <button className="submit" type="submit">SUBMIT</button>
+
+      <header className="connect-header">
+        <h2>Connect</h2>
+        <p>Reach out for collaboration, opportunities or a friendly hello.</p>
+      </header>
+
+      <main className="connect-content">
+        <section className="connect-form-card" aria-labelledby="connect-form-title">
+          <h3 id="connect-form-title">Send a message</h3>
+          <form onSubmit={handleSubmit} noValidate>
+            <div className="form-field">
+              <label htmlFor="name">Name</label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                value={formData.name}
+                onChange={handleChange}
+                autoComplete="name"
+                required
+              />
+            </div>
+            <div className="form-field">
+              <label htmlFor="email">Email</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                value={formData.email}
+                onChange={handleChange}
+                autoComplete="email"
+                required
+              />
+            </div>
+            <div className="form-field">
+              <label htmlFor="message">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                value={formData.message}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <button type="submit" className="submit-btn" disabled={status.state === 'loading'}>
+              {status.state === 'loading' ? 'Sending…' : 'Send'}
+            </button>
+            {status.msg && (
+              <div className={`form-status ${status.state}`}>{status.msg}</div>
+            )}
           </form>
-        </div>
-        <div className="connect-icons">
-          <ul>
-            <li>
-              <a className="facebook" href="https://www.facebook.com/tarun.reddy.5268750">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <i className="fa fa-facebook" aria-hidden="true"></i>
-              </a>
-            </li>
-            <li>
-              <a className="linkedin" href="https://www.linkedin.com/in/tarun-c-reddy-04684b178/">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <i className="fa fa-linkedin" aria-hidden="true"></i>
-              </a>
-            </li>
-            <li>
-              <a className="instagram" href="https://www.instagram.com/tarunreddy_007/?hl=en">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <i className="fa fa-instagram" aria-hidden="true"></i>
-              </a>
-            </li>
-            <li>
-              <a className="gmail" href="mailto:tarunreddy15112001@gmail.com">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <i className="fa fa-envelope" aria-hidden="true"></i>
-              </a>
-            </li>
-            <li>
-              <a className="github" href="https://github.com/Tarun-Reddy-007">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <i className="fa fa-github" aria-hidden="true"></i>
-              </a>
-            </li>
-            <li>
-              <a className="medium" href="https://medium.com/@tarunreddy007">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <i className="fa fa-medium" aria-hidden="true"></i>
-              </a>
-            </li>
+        </section>
+
+        <aside className="connect-social" aria-label="Social links">
+          <h3>Elsewhere</h3>
+          <ul className="social-list">
+            <li><a href="https://www.facebook.com/Tarun C Reddyreddy.5268750" aria-label="Facebook" target="_blank" rel="noreferrer"><FaFacebookF /></a></li>
+            <li><a href="https://www.linkedin.com/in/tarun-c-reddy-04684b178/" aria-label="LinkedIn" target="_blank" rel="noreferrer"><FaLinkedinIn /></a></li>
+            <li><a href="https://www.instagram.com/tarunreddy_007/?hl=en" aria-label="Instagram" target="_blank" rel="noreferrer"><FaInstagram /></a></li>
+            <li><a href="mailto:tarunreddy15112001@gmail.com" aria-label="Email"><FaEnvelope /></a></li>
+            <li><a href="https://github.com/Tarun-Reddy-007" aria-label="GitHub" target="_blank" rel="noreferrer"><FaGithub /></a></li>
+            <li><a href="https://medium.com/@tarunreddy007" aria-label="Medium" target="_blank" rel="noreferrer"><FaMedium /></a></li>
           </ul>
-        </div>
-      </div>
+        </aside>
+      </main>
     </div>
   );
 };

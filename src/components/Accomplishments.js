@@ -1,126 +1,115 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { FaTimes } from "react-icons/fa";
 import "./Accomplishments.css";
 
+const items = [
+  {
+    id: 1,
+    title: "NSS Yuva Yodha Award (2022)",
+    summary: "National recognition for service & community impact.",
+    details:
+      "Awarded the NSS YUVA YODHA AWARD on Sept 24, 2022 by Krisha Foundation, Mumbai for outstanding societal service during 2021–2022.",
+  },
+  {
+    id: 2,
+    title: "Director – Computer Programming (Team Vikasana)",
+    summary: "Youngest appointed director (R&D team).",
+    details:
+      "Appointed Director of Computer Programming within 4 months— guiding engineering initiatives, tooling, and collaboration culture.",
+  },
+  {
+    id: 3,
+    title: "Most Active Teach‑Up Educator",
+    summary: "Led 250+ government school sessions.",
+    details:
+      "Recognized on Aug 15, 2022 for coordinating 250+ volunteer-led classes (math, science, English, arts, sports) and personally teaching 30+ sessions.",
+  },
+  {
+    id: 4,
+    title: "NSS Student Volunteer of the Year",
+    summary: "Organized 32 service campaigns in one year.",
+    details:
+      "Earned annual Presidency University recognition for highest volume and impact of community service initiatives.",
+  },
+  {
+    id: 5,
+    title: "National Service Scheme Leader",
+    summary: "Youngest leader appointed (first year).",
+    details:
+      "Selected within first 2 months— spearheaded outreach logistics, volunteer mobilization, and event execution across initiatives.",
+  },
+  {
+    id: 6,
+    title: "University Cricket Team Captain",
+    summary: "Promoted after 6 months— leadership & fitness drives.",
+    details:
+      "Led training cycles, tactical match planning, and cohesion programs while representing university competitively.",
+  },
+  { id: 7, title: "Runner Up – VOIS Hackathon (Vodafone)", summary: "Rapid prototyping & solution pitch.", details: "Delivered scalable concept tackling operational inefficiency with automation & analytics." },
+  { id: 8, title: "Winner – GES Pitchers (IIT Kharagpur)", summary: "Top innovation pitch.", details: "Presented product vision, feasibility and market thesis— judged for clarity, impact, differentiation." },
+  { id: 9, title: "Runner Up – Srishti Hackathon (BMSCE)", summary: "Functional prototype under time pressure.", details: "Built working MVP using modern web stack and rapid iteration cycles." },
+  { id: 10, title: "Best Sustainability Hack – Centuriton (MSRIT)", summary: "Eco-impact solution award.", details: "Devised data-driven sustainability feature set with measurable footprint reduction potential." },
+  { id: 11, title: "Second Runner Up – Anveshan (AIU)", summary: "Research-led solution showcase.", details: "Structured evidence-based presentation blending field data & predictive modeling." },
+  { id: 12, title: "Runner Up – Anveshana (Govt. of Karnataka)", summary: "STEM innovation recognition.", details: "Concept focused on accessible technology pathways for public service improvement." },
+];
+
 const Accomplishments = () => {
+  const [active, setActive] = useState(null);
+
+  useEffect(() => {
+    if (active) { document.body.style.overflow = 'hidden'; } else { document.body.style.overflow = 'auto'; }
+    const handler = (e) => { if (e.key === 'Escape') setActive(null); };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [active]);
+
   return (
-    <div className="snip1217">
-      <nav>
+    <div className="accomplishments-page">
+      <nav className="top-nav">
+        <div className="logo">Tarun C Reddy</div>
         <ul>
-          <li>
-            <Link to="/Home">Home</Link>
-          </li>
-          <li>
-            <Link to="/Aboutme">About Me</Link>
-          </li>
-          <li>
-            <Link to="/Accomplishments">Accomplishments</Link>
-          </li>
-          <li>
-            <Link to="/Projects">Projects</Link>
-          </li>
-          <li>
-            <Link to="/Certifications">Certifications</Link>
-          </li>
-          <li>
-            <Link to="/connect">Connect</Link>
-          </li>
-          <li>
-            <Link to="/blogs">Blogs</Link>
-          </li>
+          <li><Link to="/Home">Home</Link></li>
+          <li><Link to="/Aboutme">About</Link></li>
+          <li><Link to="/Projects">Projects</Link></li>
+          <li><Link to="/Accomplishments" className="active">Accomplishments</Link></li>
+          <li><Link to="/Certifications">Certifications</Link></li>
+          <li><Link to="/connect">Connect</Link></li>
+          <li><Link to="/blogs">Blogs</Link></li>
         </ul>
       </nav>
-      <hr width="40%" color="#7490dc" />
-      <h2 className="acchead">My ACCOMPLISHMENTS</h2>
-      <hr width="40%" color="#7490dc" />
-      <div className="main-container">
-        <div className="achcards">
-          <div className="card card-1">
-            <h2 className="card__title">NSS Yuva Yodha Award, 2022.</h2>
-            <p>
-              I was awarded the NSS YUVA YODHA AWARD, 2022 on September 24, 2022
-              on the occasion of National Service Scheme Day, 2022 by Krisha
-              Foundation, Mumbai for outstanding service to the society during
-              the year 2021-2022.
-            </p>
-          </div>
-          <div className="card card-2 alternate-card">
-            <h2 className="card__title">
-              Director of Computer Programming, Team Vikasana
-            </h2>
-            <p>
-              I was appointed as the Director of Computer Programming at Team
-              Vikasana, the research and development team of Presidency
-              University, Bangalore in the Second year of my Bachelor's Degree
-              only after 4 months of my time with the team making me the
-              youngest joining team lead apart from the co- founding team.
-            </p>
-          </div>
-          <div className="card card-3">
-            <h2 className="card__title">Most Active Teach-Up Educator.</h2>
-            <p>
-              I was awarded as the best Educator on August 15, 2022 on the
-              occasion of Indian Independence day by the honorable chairman of
-              Presidency Group of Institutions, Dr. Nissar Ahmed for leading a
-              campaign initiated by the Department of Student of Affairs in
-              collaboration with National Service Scheme Cell, Presidency
-              University to teach students in government schools from class 1 to
-              class 10 in various subjects like Mathematics, General and Social
-              Sciences, English, Arts, Crafts and Sports. I led a team of 50
-              volunteers to successfully conduct more than 250 classes while I
-              myself conducted over 30 classes.
-            </p>
-          </div>
-          <div className="card card-4 alternate-card">
-            <h2 className="card__title">
-              NSS Student Volunteer of the Year, 2022.
-            </h2>
-            <p>
-              I was awarded the NSS YUVA YODHA AWARD, 2022 on September 24, 2022
-              on the occasion of National Service Scheme Day, 2022 by Presidency
-              University, Bengaluru for organizing the most ever community
-              service campaigns in a single year [32].
-            </p>
-          </div>
-          <div className="card card-5">
-            <h2 className="card__title">National Service Scheme Leader.</h2>
-            <p>
-              I was appointed as the National Service Scheme Leader in the first
-              2 months of working with the National Service Scheme cell,
-              Presidency University, Bangalore making me the youngest NSS Leader
-              ever in the cell's history of 7 years in my 1st year of study.
-            </p>
-          </div>
-          <div className="card card-6 alternate-card">
-            <h2 className="card__title">University Cricket Team Captain.</h2>
-            <b>I was appointed the University Cricket Team Captain after being part of the team for 6 months in 3rd Year of my Bachelor's Degree.</b>
-          </div>
-          <div className="card card-7">
-            <h2 className="card__title">Runner Up, VOIS Hackathon, Vodafone</h2>
-            <p></p>
-          </div>
-          <div className="card card-8 alternate-card">
-            <h2 className="card__title">Winner, GES Pitchers, IIT Kharagpur </h2>
-            <p></p>
-          </div>
-          <div className="card card-9">
-            <h2 className="card__title">Runner Up, Srishti Hackathon, BMSCE</h2>
-            <p></p>
-          </div>
-          <div className="card card-10 alternate-card">
-            <h2 className="card__title">Best Sustainability Hack, Centuriton, MSRIT</h2>
-            <p></p>
-          </div>
-          <div className="card card-11">
-            <h2 className="card__title">Second Runner Up, Anveshan, AIU</h2>
-            <p></p>
-          </div>
-          <div className="card card-12 alternate-card">
-            <h2 className="card__title">Runner Up, Anveshana, Government of Karnataka</h2>
-            <p></p>
+
+      <header className="accomplishments-header">
+        <h2>Accomplishments</h2>
+        <p className="accomplishments-sub">Awards, roles & milestones representing leadership, impact and execution.</p>
+      </header>
+
+      <section className="accomplishments-grid" aria-label="Accomplishments list">
+        {items.map(item => (
+          <article
+            key={item.id}
+            className="acc-card"
+            tabIndex={0}
+            role="button"
+            aria-label={`Open details for ${item.title}`}
+            onClick={() => setActive(item)}
+            onKeyDown={(e) => { if (e.key === 'Enter') setActive(item); }}
+          >
+            <h3 className="acc-title">{item.title}</h3>
+            <p className="acc-summary">{item.summary}</p>
+          </article>
+        ))}
+      </section>
+
+      {active && (
+        <div className="acc-overlay" role="dialog" aria-modal="true">
+          <div className="acc-overlay-inner">
+            <button className="acc-close-btn" aria-label="Close details" onClick={() => setActive(null)}><FaTimes /></button>
+            <h2 className="overlay-title">{active.title}</h2>
+            <p className="overlay-details">{active.details}</p>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

@@ -4,193 +4,113 @@ import "./Aboutme.css";
 import me2 from "./resources/me2.jpeg";
 
 const Aboutme = () => {
-
-  const [activeSection, setActiveSection] = useState('skills');
+  const [activeSection, setActiveSection] = useState("skills");
 
   const renderContent = () => {
     switch (activeSection) {
-      case 'skills':
+      case "skills":
         return (
-          <div className="content-section">
-            	<ul className="skills" >
-              <li>Python</li>
-              <li>Java</li>
-              <li>Javascript</li>
-              <li>MySQL</li>
-              <li>Power BI</li>
-              <li>Microsoft Excel</li>
-              <li>Git/Github</li>
-              <li>Unix Shell</li>
-              <li>React.js</li>
-              <li>Node.js</li>
-              <li>Express.js</li>
-              <li>Flask</li>
-              <li>MongoDB</li>
-              <li>Pandas</li>
-              <li>Numpy</li>
-              <li>Matplotlib</li>
-              <li>Seaborn</li>
-              <li>Scikit-Learn</li>
-              <li>Tensorflow</li>
-              <li>Pytorch</li>
-              <li>OpenCV</li>
-              <li>NLTK</li>
-              <li>Beautiful Soup</li>
-              <li>Firebase</li>
-              <li>Azure</li>
-              <li>Google Cloud</li>
-              <li>Project Management</li>
-              <li>Data Analysis</li>
-              <li>Machine Learning</li>
-              <li>Web Development</li>
-              <li>Digital Marketing</li>
-              <li>Trello</li>
-            </ul>
-          </div>
+          <ul className="skills">
+            {[
+              "Python","Java","JavaScript","MySQL","React.js","Node.js","Flask","MongoDB","Tensorflow","PyTorch","Machine Learning","Data Analysis","Power BI","Git/Github","Azure","Google Cloud","Digital Marketing","Project Management"
+            ].map((skill, i) => (
+              <li key={i}>{skill}</li>
+            ))}
+          </ul>
         );
-        case 'leadership':
-          return (
-            <div className="content-section">
-              <div className="leadership-experience">
-                <div className="experience">
-                  <div className="experience-header">
-                    <span className="position">NSS Student Leader</span>
-                    <span className="year">2021 - 2023</span>
-                  </div>
-                  <ul className="bullet-points">
-                  <li>Conducted more than 30 offline and online events, programs and campaigns in 2 years of my tenure.</li>
-                  <li>Awarded as the best student volunteer and social service award.</li>
-                  <li>Led a team of over 50 to conduct more than 300 hours of teaching across 10 government schools in and around Bengaluru.</li>
-                  </ul>
-                </div>
-                <div className="experience">
-                  <div className="experience-header">
-                    <span className="position">Computer Programming Head, Team Vikasana-R&I, Presidency University, Bengaluru</span>
-                    <span className="year">2021 - 2023</span>
-                  </div>
-                  <ul className="bullet-points">
-                    <li>Consistently met my short and long-term targets.</li>
-                    <li>Proactively participated in meetings and helped create new practices.</li>
-                    <li>Trained, coached, and supervised new staff members. </li>
-                    <li>Pitched ideas on how to improve performance and efficiency.</li>
-                    <li>Helped management to identify workflow issues and find solutions.</li>
-                    <li>Supervised and delegated tasks to a team of 21 people.</li>
-                  </ul>
-                </div>
-                <div className="experience">
-                  <div className="experience-header">
-                    <span className="position">University Cricket Team Captain</span>
-                    <span className="year">2022 - 2023</span>
-                  </div>
-                  <ul className="bullet-points">
-                    <li>Organized Fitness campaigns and Skill Development to scout Talen in and around the University.</li>
-                    <li>Lead the team in various tournaments and practise matches.</li>
-                  </ul>
-                </div>
+
+      case "leadership":
+        return (
+          <div className="experience-list">
+            <div className="experience">
+              <div className="experience-header">
+                <h4>NSS Student Leader</h4><span>2021–2023</span>
               </div>
+              <p>Organized 30+ events, led 50+ volunteers, contributed 300+ teaching hours in 10 schools.</p>
             </div>
-          );
-      case 'work':
-        return (
-          <div className="content-section">
-            <div className="leadership-experience">
-                <div className="experience">
-                  <div className="experience-header">
-                    <span className="position">Digital Marketing Intern, Apponix Technologies</span>
-                    <span className="year">Jan, 2021 - Apr, 2021</span>
-                  </div>
-                  <ul className="bullet-points">
-                    <li>Analyzed website performance and effectively practiced SEO optimization.</li>
-                    <li>Conducting market research to identify target audiences, competitors, and industry trends.</li>
-                    <li>Assisting in creating and managing email marketing campaigns. This involves writing email copy, setting up email automation, and analyzing email performance.</li>
-                  </ul>
-                </div>
-                <div className="experience">
-                  <div className="experience-header">
-                    <span className="position">Campus Ambassador, Bolt-IOT</span>
-                    <span className="year">Nov, 2020 - Dec, 2020</span>
-                  </div>
-                  <ul className="bullet-points">
-                    <li>Carried our peer-peer-marketing in the University and social media platforms to sell the Bolt-IOT develoment kit.</li>
-                    <li>Created photos and videos about the product and shared them on social media platforms like LinkedIn, Instagram and Twitter.</li>
-                  </ul>
-                </div>
+            <div className="experience">
+              <div className="experience-header">
+                <h4>Computer Programming Head, Team Vikasana</h4><span>2021–2023</span>
               </div>
+              <p>Supervised 21-member team, improved workflows, and delivered multiple campus-level initiatives.</p>
+            </div>
+            <div className="experience">
+              <div className="experience-header">
+                <h4>University Cricket Captain</h4><span>2022–2023</span>
+              </div>
+              <p>Led fitness and skill drives, represented university in tournaments, built team culture.</p>
+            </div>
           </div>
         );
+
+      case "work":
+        return (
+          <div className="experience-list">
+            <div className="experience">
+              <div className="experience-header">
+                <h4>Digital Marketing Intern — Apponix Technologies</h4><span>Jan–Apr 2021</span>
+              </div>
+              <p>Optimized SEO, performed market research, and executed campaigns improving engagement.</p>
+            </div>
+            <div className="experience">
+              <div className="experience-header">
+                <h4>Campus Ambassador — Bolt IoT</h4><span>Nov–Dec 2020</span>
+              </div>
+              <p>Executed peer marketing, created online media content, and expanded product reach.</p>
+            </div>
+          </div>
+        );
+
       default:
         return null;
     }
   };
 
   return (
-    <div className="snip1217">
-      <nav>
+    <div className="about-container">
+      <nav className="top-nav">
+        <div className="logo">Tarun C Reddy</div>
         <ul>
-          <li>
-            <Link to="/Home">Home</Link>
-          </li>
-          <li>
-            <Link to="/Aboutme">About Me</Link>
-          </li>
-          <li>
-            <Link to="/Accomplishments">Accomplishments</Link>
-          </li>
-          <li>
-            <Link to="/Projects">Projects</Link>
-          </li>
-          <li>
-            <Link to="/Certifications">Certifications</Link>
-          </li>
-          <li>
-            <Link to="/connect">Connect</Link>
-          </li>
-          <li>
-            <Link to="/blogs">Blogs</Link>
-          </li>
+          <li><Link to="/Home">Home</Link></li>
+          <li><Link to="/Aboutme" className="active">About</Link></li>
+          <li><Link to="/Projects">Projects</Link></li>
+          <li><Link to="/Accomplishments">Accomplishments</Link></li>
+          <li><Link to="/Certifications">Certifications</Link></li>
+          <li><Link to="/connect">Connect</Link></li>
+          <li><Link to="/blogs">Blogs</Link></li>
         </ul>
       </nav>
-      <section className="about-me-content">
-        <div className="left-column">
-          <img src="https://i.imgur.com/M0obdLg.jpg" className="profile-photo" />
-          <div className="summary">
-            <p style={{fontSize:"80%", fontWeight:"bold"}}>
-              I am a skilled data scientist and software engineer with a passion for
-              solving complex problems using innovative technologies. With a strong
-              background in machine learning, computer vision, and data analysis, I
-              excel in developing cutting-edge solutions to drive business growth and
-              improve operational efficiency. My dedication to continuous learning and
-              excellence in team collaboration has enabled me to contribute effectively
-              to various projects and initiatives.
-            </p>
+
+      <section className="about-content">
+        <div className="left-panel">
+          <div className="photo-frame">
+            <img src={me2} alt="Tarun Reddy" />
           </div>
+          <p className="bio">
+            I’m a data scientist and full-stack developer passionate about building technology
+            that simplifies life. I enjoy designing intelligent systems, solving real problems,
+            and leading teams that make a difference.
+          </p>
         </div>
-        <div className="right-column">
-      <div className="buttons">
-        <button
-          className={`button-paper ${activeSection === 'skills' ? 'selected' : ''}`}
-          role="button"
-          onClick={() => setActiveSection('skills')}
-        >
-          Skills
-        </button>
-        <button
-          className={`button-paper ${activeSection === 'leadership' ? 'selected' : ''}`}
-          role="button"
-          onClick={() => setActiveSection('leadership')}
-        >
-          Leadership Experience
-        </button>
-        <button
-          className={`button-paper ${activeSection === 'work' ? 'selected' : ''}`}
-          role="button"
-          onClick={() => setActiveSection('work')}
-        >
-          Work Experience
-        </button>
-      </div>
-      {renderContent()}
-    </div>
+
+        <div className="right-panel">
+          <div className="tab-buttons">
+            {["skills", "leadership", "work"].map((section) => (
+              <button
+                key={section}
+                className={`tab-btn ${activeSection === section ? "active" : ""}`}
+                onClick={() => setActiveSection(section)}
+              >
+                {section === "skills"
+                  ? "Skills"
+                  : section === "leadership"
+                  ? "Leadership"
+                  : "Work"}
+              </button>
+            ))}
+          </div>
+          <div className="content-box">{renderContent()}</div>
+        </div>
       </section>
     </div>
   );

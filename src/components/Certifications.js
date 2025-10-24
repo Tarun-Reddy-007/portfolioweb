@@ -1,343 +1,116 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { FaTimes } from "react-icons/fa";
 import "./Certifications.css";
 
+const certificates = [
+  "https://i.imgur.com/tP0Xnbu.jpg",
+  "https://i.imgur.com/bTy182E.jpg",
+  "https://i.imgur.com/F7tEEMZ.jpg",
+  "https://i.imgur.com/NEl3EpT.jpg",
+  "https://i.imgur.com/73VojZt.jpg",
+  "https://i.imgur.com/P1iXa0R.jpg",
+  "https://i.imgur.com/7bxADdl.jpg",
+  "https://i.imgur.com/CJPaGc5.png",
+  "https://i.imgur.com/7TcFppA.png",
+  "https://i.imgur.com/T8sjclG.jpg",
+  "https://i.imgur.com/dgDaRFS.jpg",
+  "https://i.imgur.com/p19SkJj.png",
+  "https://i.imgur.com/vq3WrxD.jpg",
+  "https://i.imgur.com/smrZJCm.jpg",
+  "https://i.imgur.com/FhxJk0Y.png",
+  "https://i.imgur.com/SrJBHGB.jpg",
+  "https://i.imgur.com/zDfBJNc.png",
+  "https://i.imgur.com/xBQwfXo.jpg",
+  "https://i.imgur.com/NFzLikP.png",
+  "https://i.imgur.com/FuIMdhu.jpg",
+  "https://i.imgur.com/psna1sC.png",
+  "https://i.imgur.com/A15SRvM.jpg",
+  "https://i.imgur.com/nAcBhN4.png",
+  "https://i.imgur.com/dVY6YjZ.png",
+  "https://i.imgur.com/FrJJraq.jpg",
+  "https://i.imgur.com/5NLO2Vk.jpg",
+  "https://i.imgur.com/aHvCbFP.jpg",
+  "https://i.imgur.com/Whw8Rre.jpg",
+  "https://i.imgur.com/UiDNBiI.jpg",
+  "https://i.imgur.com/I1Rvx89.jpg",
+  "https://i.imgur.com/dr9ka87.jpg",
+  "https://i.imgur.com/sTVGCyN.jpg",
+  "https://i.imgur.com/SIzDQSs.jpg",
+  "https://i.imgur.com/T18v7iP.jpg",
+  "https://i.imgur.com/qhwG1bF.jpg",
+  "https://i.imgur.com/GSaPasn.jpg",
+  "https://i.imgur.com/9I0LGoq.png",
+  "https://i.imgur.com/QusW1CU.jpg",
+  "https://i.imgur.com/aykZs69.jpg",
+  "https://i.imgur.com/Mh5lqWN.jpg",
+  "https://i.imgur.com/Huz417H.jpg",
+  "https://i.imgur.com/u9A3X5E.jpg",
+  "https://i.imgur.com/zenqpSx.jpg",
+  "https://i.imgur.com/r94vYX6.jpg",
+  "https://i.imgur.com/dmNHp1K.jpg",
+  "https://i.imgur.com/SMxP76d.png",
+  "https://i.imgur.com/ZeR1c9h.jpg",
+  "https://i.imgur.com/4x0EOBX.png",
+  "https://i.imgur.com/g0srp11.png",
+  "https://i.imgur.com/74tFQ4L.jpg",
+  "https://i.imgur.com/xpVskSI.jpg",
+];
+
 const Certifications = () => {
+  const [activeSrc, setActiveSrc] = useState(null);
+
   useEffect(() => {
-    const gallery = document.querySelector("#gallery");
-    const getVal = (elem, style) =>
-      parseInt(window.getComputedStyle(elem).getPropertyValue(style));
-    const getHeight = (item) =>
-      item.querySelector(".content").getBoundingClientRect().height;
-
-    const resizeAll = () => {
-      const altura = getVal(gallery, "grid-auto-rows");
-      const gap = getVal(gallery, "grid-row-gap");
-      gallery.querySelectorAll(".gallery-item").forEach((item) => {
-        const el = item;
-        el.style.gridRowEnd =
-          "span " + Math.ceil((getHeight(item) + gap) / (altura + gap));
-      });
-    };
-
-    const handleImageLoad = (item) => {
-      const altura = getVal(gallery, "grid-auto-rows");
-      const gap = getVal(gallery, "grid-row-gap");
-      const gitem = item.parentElement.parentElement;
-      gitem.style.gridRowEnd =
-        "span " + Math.ceil((getHeight(gitem) + gap) / (altura + gap));
-      item.classList.remove("byebye");
-    };
-
-    const handleImageClick = (item) => {
-      item.classList.toggle("full");
-    };
-
-    window.addEventListener("resize", resizeAll);
-    gallery.querySelectorAll("img").forEach((item) => {
-      item.classList.add("byebye");
-      if (item.complete) {
-        handleImageLoad(item);
-      } else {
-        item.addEventListener("load", () => handleImageLoad(item));
-      }
-    });
-    gallery.querySelectorAll(".gallery-item").forEach((item) => {
-      item.addEventListener("click", () => handleImageClick(item));
-    });
-
-    return () => {
-      window.removeEventListener("resize", resizeAll);
-    };
-  }, []);
+    if (activeSrc) { document.body.style.overflow = 'hidden'; } else { document.body.style.overflow = 'auto'; }
+    const handler = (e) => { if (e.key === 'Escape') setActiveSrc(null); };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [activeSrc]);
 
   return (
-    <div className="snip1217">
-      <nav>
+    <div className="certifications-page">
+      <nav className="top-nav">
+        <div className="logo">Tarun C Reddy</div>
         <ul>
-          <li>
-            <Link to="/Home">Home</Link>
-          </li>
-          <li>
-            <Link to="/Aboutme">About Me</Link>
-          </li>
-          <li>
-            <Link to="/Accomplishments">Accomplishments</Link>
-          </li>
-          <li>
-            <Link to="/Projects">Projects</Link>
-          </li>
-          <li>
-            <Link to="/Certifications">Certifications</Link>
-          </li>
-          <li>
-            <Link to="/connect">Connect</Link>
-          </li>
-          <li>
-            <Link to="/blogs">Blogs</Link>
-          </li>
+          <li><Link to="/Home">Home</Link></li>
+          <li><Link to="/Aboutme">About</Link></li>
+          <li><Link to="/Projects">Projects</Link></li>
+          <li><Link to="/Accomplishments">Accomplishments</Link></li>
+          <li><Link to="/Certifications" className="active">Certifications</Link></li>
+          <li><Link to="/connect">Connect</Link></li>
+          <li><Link to="/blogs">Blogs</Link></li>
         </ul>
       </nav>
-      <hr width="30%" color="#7490dc" />
-      <h2 className="blogcert">My Certificates</h2>
-      <hr width="30%" color="#7490dc" /><br/>
-      <div className="gallery" id="gallery">
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/tP0Xnbu.jpg" alt="" />
+
+      <header className="cert-header">
+        <h2>Certifications</h2>
+        <p className="cert-sub">Selected certificates highlighting continuous learning & specialization.</p>
+      </header>
+
+      <section className="cert-grid" aria-label="Certificates gallery">
+        {certificates.map((src, i) => (
+          <figure
+            key={src}
+            className="cert-card"
+            tabIndex={0}
+            role="button"
+            aria-label={`Open certificate ${i + 1}`}
+            onClick={() => setActiveSrc(src)}
+            onKeyDown={(e) => { if (e.key === 'Enter') setActiveSrc(src); }}
+          >
+            <img src={src} alt={`Certificate ${i + 1}`} loading="lazy" />
+          </figure>
+        ))}
+      </section>
+
+      {activeSrc && (
+        <div className="cert-overlay" role="dialog" aria-modal="true">
+          <div className="cert-overlay-inner">
+            <button className="cert-close" aria-label="Close image" onClick={() => setActiveSrc(null)}><FaTimes /></button>
+            <img src={activeSrc} alt="Enlarged certificate" className="overlay-image" />
           </div>
         </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/bTy182E.jpg" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/F7tEEMZ.jpg" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/NEl3EpT.jpg" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/73VojZt.jpg" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/P1iXa0R.jpg" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/7bxADdl.jpg" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/CJPaGc5.png" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/7TcFppA.png" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/T8sjclG.jpg" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/dgDaRFS.jpg" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/p19SkJj.png" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/vq3WrxD.jpg" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/smrZJCm.jpg" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/FhxJk0Y.png" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/SrJBHGB.jpg" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/zDfBJNc.png" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/xBQwfXo.jpg" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/NFzLikP.png" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/FuIMdhu.jpg" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/psna1sC.png" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/A15SRvM.jpg" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/nAcBhN4.png" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/dVY6YjZ.png" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/FrJJraq.jpg" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/5NLO2Vk.jpg" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/aHvCbFP.jpg" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/Whw8Rre.jpg" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/UiDNBiI.jpg" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/I1Rvx89.jpg" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/dr9ka87.jpg" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/sTVGCyN.jpg" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/SIzDQSs.jpg" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/T18v7iP.jpg" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/qhwG1bF.jpg" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/GSaPasn.jpg" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/9I0LGoq.png" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/QusW1CU.jpg" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/aykZs69.jpg" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/Mh5lqWN.jpg" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/Huz417H.jpg" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/u9A3X5E.jpg" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/zenqpSx.jpg" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/r94vYX6.jpg" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/dmNHp1K.jpg" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/SMxP76d.png" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/ZeR1c9h.jpg" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/4x0EOBX.png" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/g0srp11.png" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/74tFQ4L.jpg" alt="" />
-          </div>
-        </div>
-        <div className="gallery-item">
-          <div className="content">
-            <img src="https://i.imgur.com/xpVskSI.jpg" alt="" />
-          </div>
-        </div>
-      </div>
+      )}
     </div>
   );
 };

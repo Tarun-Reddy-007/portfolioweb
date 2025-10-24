@@ -1,147 +1,181 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:400,500,800);
-.snip1217 {
-  font-family: 'Raleway', Arial, sans-serif;
-  text-align: center;
-  font-weight:bold;
-  letter-spacing: 1px;
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap");
+
+/* Page */
+.certifications-page {
+  min-height: 100vh;
+  background: #0d1117;
+  color: #d0d0d0;
+  font-family: "Space Grotesk", sans-serif;
+  padding-top: 4.5rem;
 }
 
-body {
-  font-family: 'Raleway', Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-image: url("https://i.imgur.com/N1AxbHO.gif");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+/* Header */
+.cert-header h2 {
+  font-size: 2.1rem;
+  margin: 0 0 .45rem;
+  color: #f5f5f5;
+  padding: 4.2rem 0 0 6%;
+  /* offset for fixed nav */
 }
 
-.snip1217 ul {
-  padding-top: 2%;
+.cert-sub {
+  font-size: .9rem;
+  color: #9ea5b1;
+  margin: 0 0 2rem;
+  max-width: 700px;
+  padding-left: 6%;
 }
-.snip1217 * {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  -webkit-transition: all 0.35s ease;
-  transition: all 0.35s ease;
+
+/* Grid */
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 1.3rem;
+  padding: 0 6%;
 }
-.snip1217 li {
-  display: inline-block;
-  list-style: outside none none;
-  margin: 0.5em 1.5em;
-  padding: 0;
-}
-.snip1217 a {
-  padding: 0.3em 0;
-  color: rgba(255, 255, 255, 0.5);
+
+.cert-card {
+  background: #121a23;
+  border: 1px solid #1e2a38;
+  border-radius: 14px;
+  padding: .65rem .65rem .55rem;
   position: relative;
-  text-decoration: none;
-  display: inline-block;
-}
-.snip1217 a:before,
-.snip1217 a:after {
-  height: 3px;
-  position: absolute;
-  content: '';
-  -webkit-transition: all 0.35s ease;
-  transition: all 0.35s ease;
-  background-color: #7490dc;
-  width: 0;
-}
-.snip1217 a:before {
-  top: 0;
-  left: 0;
-}
-.snip1217 a:after {
-  bottom: 0;
-  right: 0;
-}
-.snip1217 a:hover,
-.snip1217 .current a {
-  color: #ffffff;
-}
-.snip1217 a:hover:before,
-.snip1217 .current a:before,
-.snip1217 a:hover:after,
-.snip1217 .current a:after {
-  width: 100%;
-}
-.snip1217 {
-  display: flex;
-  flex-direction: column;
-  background-image: url("https://i.imgur.com/N1AxbHO.gif");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 100vw;
-  height: 100vh;
-}
-
-.blogcert{
-  font-weight: bold;
-  color:#7490dc;
-}
-
-.hello {
-  opacity: 1 !important;
-}
-.full {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-.full .content {
-  background-color: rgba(0,0,0,0.75) !important;
-  height: 100%;
-  width: 100%;
-  display: grid;
-}
-.full .content img {
-  left: 50%;
-  transform: translate3d(0, 0, 0);
-  animation: zoomin 1s ease;
-  max-width: 65%;
-  max-height: 65%;
-  margin: auto;
-}
-.byebye {
-  opacity: 0;
-}
-.byebye:hover {
-  transform: scale(0.2) !important;
-}
-.gallery {
-  display: grid;
-  grid-column-gap: 8px;
-  grid-row-gap: 8px;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  grid-auto-rows: 8px;
-  margin-left: 3%;
-  margin-right:3%;
-  margin-bottom: 2%;
-}
-.gallery img {
-  max-width: 100%;
-  border-radius: 8px;
-  box-shadow: 0 0 16px #333;
-  transition: all 1.5s ease;
-}
-.gallery img:hover {
-  box-shadow: 0 0 32px #333;
-}
-.gallery .content {
-  padding: 4px;
-}
-.gallery .gallery-item {
-  transition: grid-row-start 300ms linear;
-  transition: transform 300ms ease;
-  transition: all 0.5s ease;
   cursor: pointer;
-}
-.gallery .gallery-item:hover {
-  transform: scale(1.025);
+  transition: border-color .25s, transform .25s, box-shadow .25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+.cert-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(77, 168, 218, .12), rgba(77, 168, 218, 0) 60%);
+  opacity: 0;
+  transition: opacity .3s;
+  pointer-events: none;
+}
+
+.cert-card:hover {
+  border-color: #2d4660;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.6);
+}
+
+.cert-card:hover::before {
+  opacity: 1;
+}
+
+.cert-card:focus {
+  outline: 2px solid #4da8da;
+  outline-offset: 2px;
+}
+
+.cert-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+}
+
+/* Overlay */
+.cert-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(13, 17, 23, .85);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 5.5rem 4% 3rem;
+  z-index: 500;
+  overflow-y: auto;
+}
+
+.cert-overlay-inner {
+  width: min(1100px, 100%);
+  background: #0f1620;
+  border: 1px solid #263646;
+  border-radius: 22px;
+  padding: 1.8rem 1.8rem 2.2rem;
+  position: relative;
+  box-shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.7);
+}
+
+.cert-close {
+  position: absolute;
+  top: .9rem;
+  right: .9rem;
+  background: #1c2531;
+  border: 1px solid #2c4c71;
+  color: #b8d7ff;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background .25s, color .25s;
+}
+
+.cert-close:hover {
+  background: #4da8da;
+  color: #0d1117;
+}
+
+.overlay-image {
+  width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: 16px;
+  border: 1px solid #1e2a38;
+  background: #121a23;
+}
+
+/* Scrollbar */
+.cert-overlay::-webkit-scrollbar {
+  width: 10px;
+}
+
+.cert-overlay::-webkit-scrollbar-track {
+  background: #0f1620;
+}
+
+.cert-overlay::-webkit-scrollbar-thumb {
+  background: #2c4c71;
+  border-radius: 6px;
+}
+
+.cert-overlay::-webkit-scrollbar-thumb:hover {
+  background: #4da8da;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .certifications-page {
+    padding: 4.5rem 5% 2.8rem;
+  }
+
+  .cert-header h2 {
+    font-size: 1.85rem;
+  }
+
+  .cert-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .cert-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: .9rem;
+  }
+
+  .cert-header h2 {
+    font-size: 1.6rem;
+  }
+}
