@@ -14,7 +14,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.2rem 6%;
+  padding: 1.2rem 3%;
   position: fixed;
   top: 0;
   width: 100%;
@@ -162,4 +162,7 @@
   .projects-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
   .project-title { font-size: .9rem; }
   .project-short { font-size: .7rem; }
+@media (max-width: 810px) {
+  .top-nav ul { display: none; }
+}
 }

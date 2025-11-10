@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import TopNav from './TopNav';
 import { FaTimes } from "react-icons/fa";
 import "./Projects.css";
 
@@ -78,18 +79,7 @@ const Projects = () => {
 
   return (
     <div className="projects-page">
-      <nav className="top-nav">
-        <div className="logo">Tarun C Reddy</div>
-        <ul>
-          <li><Link to="/Home">Home</Link></li>
-          <li><Link to="/Aboutme">About Me</Link></li>
-          <li><Link to="/Projects" className="active">Projects</Link></li>
-          <li><Link to="/Accomplishments">Accomplishments</Link></li>
-          <li><Link to="/Certifications">Certifications</Link></li>
-          <li><Link to="/connect">Connect</Link></li>
-          <li><Link to="/blogs">Blogs</Link></li>
-        </ul>
-      </nav>
+  <TopNav />
       <header className="projects-header">
         <h2>Projects</h2>
       </header>

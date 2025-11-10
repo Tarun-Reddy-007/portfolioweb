@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import TopNav from './TopNav';
 import { FaFacebookF, FaLinkedinIn, FaInstagram, FaEnvelope, FaGithub, FaMedium } from 'react-icons/fa';
 import './Connect.css';
 
@@ -47,18 +48,7 @@ const Connect = () => {
 
   return (
     <div className="connect-page">
-      <nav className="top-nav">
-        <div className="logo">Tarun C Reddy</div>
-        <ul>
-          <li><Link to="/Home">Home</Link></li>
-          <li><Link to="/Aboutme">About</Link></li>
-          <li><Link to="/Projects">Projects</Link></li>
-          <li><Link to="/Accomplishments">Accomplishments</Link></li>
-          <li><Link to="/Certifications">Certifications</Link></li>
-          <li><Link to="/connect" className="active">Connect</Link></li>
-          <li><Link to="/blogs">Blogs</Link></li>
-        </ul>
-      </nav>
+      <TopNav />
 
       <header className="connect-header">
         <h2>Connect</h2>
@@ -116,7 +106,7 @@ const Connect = () => {
         <aside className="connect-social" aria-label="Social links">
           <h3>Elsewhere</h3>
           <ul className="social-list">
-            <li><a href="https://www.facebook.com/Tarun C Reddyreddy.5268750" aria-label="Facebook" target="_blank" rel="noreferrer"><FaFacebookF /></a></li>
+            <li><a href="https://www.facebook.com/TARUN.reddy.5268750" aria-label="Facebook" target="_blank" rel="noreferrer"><FaFacebookF /></a></li>
             <li><a href="https://www.linkedin.com/in/tarun-c-reddy-04684b178/" aria-label="LinkedIn" target="_blank" rel="noreferrer"><FaLinkedinIn /></a></li>
             <li><a href="https://www.instagram.com/tarunreddy_007/?hl=en" aria-label="Instagram" target="_blank" rel="noreferrer"><FaInstagram /></a></li>
             <li><a href="mailto:tarunreddy15112001@gmail.com" aria-label="Email"><FaEnvelope /></a></li>

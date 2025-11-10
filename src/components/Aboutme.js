@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import TopNav from './TopNav';
 import "./Aboutme.css";
 import me2 from "./resources/me2.jpeg";
 
@@ -48,13 +49,19 @@ const Aboutme = () => {
           <div className="experience-list">
             <div className="experience">
               <div className="experience-header">
-                <h4>Digital Marketing Intern — Apponix Technologies</h4><span>Jan–Apr 2021</span>
+                <h4>Software Engineer — Schneider Electric </h4><span>Nov 2024 - Present</span>
+              </div>
+              <p>Started working on the User Configurator journey for Motor Control Configurator. I am an integral part of our team working on multiple projects like HPC, PLC, Tesys Deca and Altivar Efficiency Calculators using Core Java, React.js, AWS, Docker and Github Primarily.</p>
+            </div>
+            <div className="experience">
+              <div className="experience-header">
+                <h4>Digital Marketing Intern — Apponix Technologies</h4><span>Jan-Apr 2021</span>
               </div>
               <p>Optimized SEO, performed market research, and executed campaigns improving engagement.</p>
             </div>
             <div className="experience">
               <div className="experience-header">
-                <h4>Campus Ambassador — Bolt IoT</h4><span>Nov–Dec 2020</span>
+                <h4>Campus Ambassador — Bolt IoT</h4><span>Nov-Dec 2020</span>
               </div>
               <p>Executed peer marketing, created online media content, and expanded product reach.</p>
             </div>
@@ -68,18 +75,7 @@ const Aboutme = () => {
 
   return (
     <div className="about-container">
-      <nav className="top-nav">
-        <div className="logo">Tarun C Reddy</div>
-        <ul>
-          <li><Link to="/Home">Home</Link></li>
-          <li><Link to="/Aboutme" className="active">About</Link></li>
-          <li><Link to="/Projects">Projects</Link></li>
-          <li><Link to="/Accomplishments">Accomplishments</Link></li>
-          <li><Link to="/Certifications">Certifications</Link></li>
-          <li><Link to="/connect">Connect</Link></li>
-          <li><Link to="/blogs">Blogs</Link></li>
-        </ul>
-      </nav>
+      <TopNav />
 
       <section className="about-content">
         <div className="left-panel">

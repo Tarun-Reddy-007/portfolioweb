@@ -2,7 +2,6 @@
   "name": "portfolioweb",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Tarun-Reddy-007.github.io/portfolioweb",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",

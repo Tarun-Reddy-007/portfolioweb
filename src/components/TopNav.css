@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap");
+
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 3%;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  background: rgba(15,17,21,0.85);
+  backdrop-filter: blur(12px);
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-family: "Space Grotesk", sans-serif;
+}
+.logo { font-size: 1.3rem; font-weight: 600; letter-spacing: 1px; color: #4da8da; }
+.nav-links { list-style: none; display: flex; gap: 2rem; margin: 0; padding: 0; }
+.nav-links a { text-decoration: none; color: #aaa; font-size: .95rem; transition: .3s; }
+.nav-links a:hover, .nav-links a.active { color: #4da8da; }
+
+.nav-toggle { display: none; background: #1c2531; border: 1px solid #2c4c71; color: #b8d7ff; width:42px; height:42px; border-radius: 10px; justify-content:center; align-items:center; cursor:pointer; font-size:1.1rem; transition: background .25s, color .25s; }
+.nav-toggle:hover { background:#4da8da; color:#0d1117; }
+
+/* Drawer */
+.mobile-drawer {
+  position: fixed;
+  inset: 0;
+  background: rgba(13,17,23,.92);
+  backdrop-filter: blur(6px);
+  display: flex;
+  flex-direction: column;
+  padding: 6rem 2.5rem 3rem;
+  animation: fadeIn .35s ease;
+  z-index: 999;
+}
+.mobile-drawer ul { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:1.2rem; }
+.mobile-drawer a { text-decoration:none; font-size:1.05rem; font-weight:500; color:#d0d0d0; letter-spacing:.5px; transition: color .25s; }
+.mobile-drawer a.active, .mobile-drawer a:hover { color:#4da8da; }
+
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+/* Responsive break */
+@media (max-width: 810px) {
+  .nav-links { display: none; }
+  .nav-toggle { display: inline-flex; }
+}

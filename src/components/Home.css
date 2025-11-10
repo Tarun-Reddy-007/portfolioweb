@@ -18,7 +18,7 @@ body, html {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.2rem 6%;
+  padding: 1.2rem 3%;
   position: fixed;
   top: 0;
   width: 100%;
@@ -169,6 +169,11 @@ body, html {
 
 @media (max-width: 850px) {
   .top-nav ul { gap: 1.3rem; }
+}
+
+/* Hamburger integration: hide inline list if TopNav provides drawer (safeguard) */
+@media (max-width: 810px) {
+  .top-nav ul { display: none; }
 }
 
 /* ANIMATIONS */

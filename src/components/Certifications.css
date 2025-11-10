@@ -179,3 +179,7 @@
     font-size: 1.6rem;
   }
 }
+
+@media (max-width: 810px) {
+  .top-nav ul { display: none; }
+}
