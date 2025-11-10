@@ -83,9 +83,7 @@ const Aboutme = () => {
             <img src={me2} alt="Tarun Reddy" />
           </div>
           <p className="bio">
-            I’m a data scientist and full-stack developer passionate about building technology
-            that simplifies life. I enjoy designing intelligent systems, solving real problems,
-            and leading teams that make a difference.
+            I'm Tarun C Reddy — a Full Stack Developer passionate about building scalable, high-performance web applications that solve real business problems. At Schneider Electric, I’ve engineered complex configurator platforms, automated workflows using Python, and contributed to AI-driven design standardization initiatives. With a strong foundation in Java, Python, JavaScript, React, and SQL, I focus on writing clean, efficient, and maintainable code. Beyond development, I’ve led team knowledge-sharing programs, streamlined processes, and driven innovation through practical solutions that enhance productivity and user experience.
           </p>
         </div>
 

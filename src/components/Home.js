@@ -16,7 +16,7 @@ const Home = () => {
             <span className="role-badge">Data Scientist</span>
           </div>
           <p className="hero-desc">
-            Passionate about transforming ideas into technology, driving impact through innovation, and creating meaningful digital experiences.
+            I am a full stack developer and problem solver passionate about building impactful digital experiences. From engineering scalable web solutions at Schneider Electric to leading community initiatives and winning national hackathons, I blend technology, creativity, and leadership to turn ideas into real-world innovations.
           </p>
           <a
             href="https://drive.google.com/file/d/15sMROGTRO5pzNRz6aMdOl-Mnl5BhxqFT/view?usp=sharing"
